@@ -23,7 +23,7 @@ class ShapeProcessor {
                           int startThreshold,
                           int continueThreshold) {
 
-        // copies the given image into a
+        // copies the given image into a duplicate array, for safety
         // adapted from: https://stackoverflow.com/a/5785754
         image = new int[edgesPPM.length][edgesPPM[0].length];
         System.arraycopy(edgesPPM, 0, image, 0, edgesPPM.length);
