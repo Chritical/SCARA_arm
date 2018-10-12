@@ -34,7 +34,7 @@ public class imageLoader{
 		UI.print(image);
 		return image;
 	}
-	
+	//this method will just return the image(getter method)
     public int[][] getImage(){
 		return this.image;    
        }
