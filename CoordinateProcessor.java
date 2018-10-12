@@ -67,7 +67,7 @@
 
         double chosenX, chosenY;
         
-        if (x1 > x2) {
+        if (x1 < x2) {
 			chosenX = x1;
 			chosenY = y1;
 		} else {
@@ -78,7 +78,7 @@
 		System.out.println("chosenX: " + chosenX);
 		System.out.println("chosenY: " + chosenY);
     
-        rightTheta = Math.atan2(chosenY - motorRightY, chosenX - motorRightX);
+        leftTheta = -Math.atan2(chosenY - motorLeftY, chosenX - motorLeftX);
     }
     
     private void calculateRightMotorAngle() {
@@ -138,7 +138,7 @@
 		System.out.println("chosenX: " + chosenX);
 		System.out.println("chosenY: " + chosenY);
     
-        rightTheta = Math.atan2(chosenY - motorRightY, chosenX - motorRightX);
+        rightTheta = -Math.atan2(chosenY - motorRightY, chosenX - motorRightX);
         
     }
     
@@ -186,65 +186,13 @@
     
     public void output() {
 		
-		
-		//System.out.println
-				// calculate distance d
-        // calculate h
-        //
-        // calculate A coordinates
-        // calculate alpha
-        //
-        // calculate possible x and y
-        
-        double distance = Math.sqrt(  Math.pow((targetX - motorLeftX), 2) + Math.pow((targetY - motorLeftY), 2)  );
-        
-        System.out.println("distance: " + distance);
-        
-        System.out.println("radius^2: " + Math.pow(radius, 2));
-        System.out.println("(distance/2)^2: " + Math.pow(distance/2, 2));
-        
-        double h = Math.sqrt( Math.pow(radius, 2) - Math.pow(distance/2, 2) );
-        System.out.println("h: " + h);
-        
-        // coordinates in the middle of the pen and the motor
-        double xA = (targetX + motorLeftX) / 2;
-        double yA = (targetY + motorLeftY) / 2;
-        
-        double alpha = Math.acos((motorLeftX - targetX)/distance);
-        
-        System.out.println("alpha: " + alpha);
-        
-        System.out.println("sin alpha: " + Math.sin(alpha));
-        
-        double x1 = xA + h * Math.sin(alpha);
-        double x2 = yA - h * Math.cos(alpha);
-        
-        double y1 = xA - h * Math.sin(alpha);
-        double y2 = yA + h * Math.cos(alpha);
-        
-        System.out.println("x1: " + x1);
-        System.out.println("y1: " + y1);
-        System.out.println("x2: " + x2);
-        System.out.println("y2: " + y2);
-        
-        double chosenX, chosenY;
-        
-        if (x1 < x2) {
-			chosenX = x1;
-			chosenY = y1;
-		} else {
-			chosenX = x2;
-			chosenY = y2;
-		}
-
-        leftTheta = Math.atan2(motorLeftY - chosenY, chosenX - motorLeftX);
         System.out.println(leftTheta*180/Math.PI + " " + rightTheta*180/Math.PI);
     }
     
     
     public static void main(String[] args) {
         
-        CoordinateProcessor cp = new CoordinateProcessor(255, 98, 300, 480, 340, 480, 290);
+        CoordinateProcessor cp = new CoordinateProcessor(230, 12, 300, 480, 340, 480, 290);
         cp.output();
         
     }
