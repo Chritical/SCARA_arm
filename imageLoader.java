@@ -34,6 +34,10 @@ public class imageLoader{
 		UI.print(image);
 		return image;
 	}
+	
+    public int[][] getImage(){
+		return this.image;    
+       }
     
     private void computeGreyColours(){
         for (int i=0; i<256; i++){
@@ -45,7 +49,7 @@ public class imageLoader{
 	//This is the method that chooses the file. If you want to change it, change "Skyrim_panorama.jpg" to what you want, or give it a variable, IDK...
     public void loadImageFromFile(){
         this.image = this.loadAnImage("Skyrim_panorama.jpg");
-        this.redisplayImage();
+        //this.redisplayImage();
     }
 
     public void redisplayImage(){
