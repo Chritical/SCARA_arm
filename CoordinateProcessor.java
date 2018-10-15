@@ -4,6 +4,8 @@
     private ArrayList<ArrayList<int[]>> edges;
     private double motorLeftX, motorLeftY;
     private double motorRightX, motorRightY;
+    private double[] motorGradient = new double[2];
+    private double[] motorConstant = new double[2];
     private double radius;
     
     
@@ -111,10 +113,31 @@
      * @param double theta The required angle.
      * @return The corresponding motor control.
      */
-    private int calculateMotorControl(double theta) {
+    private int calculateMotorControl(double theta, String motor) {
+		int chosenMotor = motor.equals("left") ? 0 : 1;	
+		return (int) (motorGradient[chosenMotor] * theta + motorConstant[chosenMotor]);  // y = mx + c
+	}
+	
+	
+	/**
+	 * The motor control is linearly proportional to the given theta for
+	 * the unique motor. This method calculates the linear equation for
+	 * both motors so it can be used later.
+	 * @param theta1  One tested theta value.
+	 * @param theta2  A second tested theta value.
+	 * @param t1  One tested motor value corresponding to the theta.
+	 * @param t2  A second tested motor value corresponding to theta2.
+	 * @param motor  Either the left or right motor.
+	 */
+	public void calculateMotorEquation(double theta1, double theta2,
+	                                   double t1,     double t2,
+	                                   String motor) {
 		
-		// do thing
-		return -1;
+		int chosenMotor = (motor.equals("left")) ? 0 : 1;
+		
+		motorGradient[chosenMotor] = (t2 - t1) / (theta2 - theta1);
+		motorConstant[chosenMotor] = ((t1 * theta1 - t2 * theta2) / 
+		                              (theta2 - theta1)) + t1;
 	}
     
     
@@ -129,8 +152,8 @@
 		leftTheta = calculateTheta(coordinate[0], coordinate[1], "left");
 		rightTheta = calculateTheta(coordinate[0], coordinate[1], "right");
 		
-		coordinate[0] = calculateMotorControl(leftTheta);
-		coordinate[1] = calculateMotorControl(rightTheta);
+		coordinate[0] = calculateMotorControl(leftTheta, "left");
+		coordinate[1] = calculateMotorControl(rightTheta, "right");
 		
 		return coordinate;
 	}
@@ -172,6 +195,24 @@
 		System.out.println("left theta:  " + leftTheta*180/Math.PI
 		               + "\tright theta: " + rightTheta*180/Math.PI);
 	}
+	
+	
+	public void testMotorControls(double leftTheta,
+	                              double leftTheta1,  double leftTheta2, 
+	                              double leftT1,      double leftT2,
+	                              double rightTheta,
+	                              double rightTheta1, double rightTheta2,
+	                              double rightT1,     double rightT2) {
+		
+		calculateMotorEquation(leftTheta1, leftTheta2, leftT1, leftT2, "left");
+		calculateMotorEquation(rightTheta1, rightTheta2, rightT1, rightT2, "right");
+		
+		System.out.println("left motor control: " + 
+		                   calculateMotorControl(leftTheta, "left") +
+		                   "\tright motor control: " +
+		                   calculateMotorControl(rightTheta, "right"));
+		
+	}
     
     public static void main(String[] args) {
 		// some simple test cases which are correct according to
@@ -179,6 +220,8 @@
         CoordinateProcessor cp = new CoordinateProcessor(null, 300, 480, 340, 480, 290);
         cp.testTheta(255, 98);
         cp.testTheta(230, 12);
+        
+        //cp.testMotorControls(
     }
     
  }
