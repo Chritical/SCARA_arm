@@ -129,15 +129,32 @@
 	 * @param t2  A second tested motor value corresponding to theta2.
 	 * @param motor  Either the left or right motor.
 	 */
-	public void calculateMotorEquation(double theta1, double theta2,
-	                                   double t1,     double t2,
+	public void calculateMotorEquation(double[] theta, double[] t,
 	                                   String motor) {
 		
 		int chosenMotor = (motor.equals("left")) ? 0 : 1;
 		
-		motorGradient[chosenMotor] = (t2 - t1) / (theta2 - theta1);
-		motorConstant[chosenMotor] = ((t1 * theta1 - t2 * theta2) / 
-		                              (theta2 - theta1)) + t1;
+		double totalGradient = 0, totalConstant = 0;
+		
+		for (int i = 0; i < theta.length - 1; i++) {
+			
+			totalGradient += (t[i] - t[i + 1]) / (theta[i] - theta[i + 1]);
+			totalConstant += ((t[i] * theta[i] - t[i + 1] * theta[i + 1]) / 
+		                      (theta[i] - theta[i + 1])) + t[i];
+		}
+		
+		motorGradient[chosenMotor] = totalGradient / (theta.length - 1);
+		motorConstant[chosenMotor] = totalConstant / (theta.length - 1);
+		
+		//System.out.println(motor + " t1: " + t1 + "\tt2: " + t2);
+		//System.out.println(motor + " theta1: " + theta1 + "\ttheta2: " + theta2);
+		
+		//motorGradient[chosenMotor] = (t2 - t1) / (theta2 - theta1);
+		//motorConstant[chosenMotor] = (((t1 * theta1 - t2 * theta1) / 
+		//                              (theta2 - theta1)) + t1);
+		                              
+		System.out.println(motor + " motor gradient: " + motorGradient[chosenMotor] + "\t" + motor + " motor constant: " + motorConstant[chosenMotor]);
+		
 	}
     
     
@@ -197,21 +214,20 @@
 	}
 	
 	
-	public void testMotorControls(double leftTheta,
-	                              double leftTheta1,  double leftTheta2, 
-	                              double leftT1,      double leftT2,
-	                              double rightTheta,
-	                              double rightTheta1, double rightTheta2,
-	                              double rightT1,     double rightT2) {
+	public void testMotorControls(double leftTheta, double rightTheta,
+	                              double[] leftThetaTest,  double[] rightThetaTest, 
+	                              double[] leftTTest,      double[] rightTTest) {
 		
-		calculateMotorEquation(leftTheta1, leftTheta2, leftT1, leftT2, "left");
-		calculateMotorEquation(rightTheta1, rightTheta2, rightT1, rightT2, "right");
+		for (int i = 0; i < leftThetaTest.length; i++) {
+			calculateMotorEquation(leftThetaTest, leftTTest, "left");
+			calculateMotorEquation(rightThetaTest, rightTTest, "right");
+		}
 		
 		System.out.println("left motor control: " + 
-		                   calculateMotorControl(leftTheta, "left") +
-		                   "\tright motor control: " +
-		                   calculateMotorControl(rightTheta, "right"));
-		
+						   calculateMotorControl(leftTheta, "left") +
+						   "\tright motor control: " +
+						   calculateMotorControl(rightTheta, "right"));
+				
 	}
     
     public static void main(String[] args) {
@@ -221,7 +237,13 @@
         cp.testTheta(255, 98);
         cp.testTheta(230, 12);
         
-        //cp.testMotorControls(
+        double[] leftTheta = {127, 79.7};
+        double[] rightTheta = {87.5, 55};
+        double[] leftT = {1200, 1600};
+        double[] rightT = {1200, 1600};
+        
+        
+        cp.testMotorControls(116, 78.3, leftTheta, rightTheta, leftT, rightT);
     }
     
  }
