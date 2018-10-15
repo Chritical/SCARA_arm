@@ -40,6 +40,7 @@ public class SCARAImageCreator
 		coordinateProcessor.processCoordinates();
 		System.out.println("Saving to file...");
 		fileCreator.writeFile();
+		System.out.println("================= ~ Done! ~ =================");
 	}
 	
 	public static void main (String[] args)}{
