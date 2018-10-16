@@ -32,6 +32,9 @@ class ShapeProcessor {
         this.continueThreshold = continueThreshold;
 
         edges = new ArrayList<ArrayList<int[]>>();
+        
+        processEdges();
+       
     }
 
     public ArrayList<ArrayList<int[]>> getEdges() {
