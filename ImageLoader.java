@@ -6,12 +6,12 @@
  * 0.0.0.1
  */
 
-import ecs100.*;
+/*import ecs100.*;
 import java.util.*;
 import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage;*/
 
 public class ImageLoader{
 	
