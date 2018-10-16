@@ -1,3 +1,7 @@
+/**
+ * Takes an int[][] ppm image and outputs an int[][] with edges in white and everything else in black.
+ **/
+
 import ecs100.*;
 import java.util.*;
 import java.awt.Color;
@@ -6,13 +10,13 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.lang.Math;
 
-class ImageProcessor{
+class EdgeProcessor{
 
 	int[][] brd;
 	int[][] imgV;
 	int[][] imgH;
 	
-	public ImageProcessor(){
+	public EdgeProcessor(){
         int x[][] = {{250,250,250,250,50,50,50,50,50},
 					{250,250,250,250,50,50,50,50,50},
 					{250,250,250,250,50,50,50,50,50},
@@ -66,6 +70,6 @@ class ImageProcessor{
 	}
 	
 	public static void main(String[] args){
-			ImageProcessor im = new ImageProcessor();
+			EdgeProcessor im = new EdgeProcessor();
 	}
 }
