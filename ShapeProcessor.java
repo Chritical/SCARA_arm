@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /**
  * Processes a file of a picture of the edges into an ArrayList of
