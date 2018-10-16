@@ -1,6 +1,6 @@
 
 /**
- * Will create a ppm from an rgb image (optimised for jpeg)
+ * Creates a ppm from an rgb image (optimised for jpeg)
  *
  * Felix (KrypticKain) Kain
  * 0.0.0.1
@@ -46,9 +46,9 @@ public class ImageLoader{
     }
 	
 	
-	//This is the method that chooses the file. If you want to change it, change "Skyrim_panorama.jpg" to what you want, or give it a variable, IDK...
+	//This is the method that chooses the file.
     public void loadImageFromFile(){
-        this.image = this.loadAnImage("Skyrim_panorama.jpg");
+        this.image = UIFileChooser.open();
         //this.redisplayImage();
     }
 
@@ -95,9 +95,9 @@ public class ImageLoader{
         return ans;
     }
     
-    public static void main(String[] arguments){
+    /*public static void main(String[] arguments){
         imageLoader ob = new imageLoader();
-    }  
+    }  */
 
 }
 
