@@ -7,15 +7,16 @@ import java.io.*;
 
 public class FileCreator
 {	
-	/** Constructor. Contains test functions */
-	/*FileCreator(){
-		ArrayList<int[]> testList = new ArrayList<int[]>();
+	/** Constructor */
+	FileCreator(){
+		//Test array
+		/*ArrayList<int[]> testList = new ArrayList<int[]>();
 		testList.add(new int[]{1000,2000});
 		testList.add(new int[]{3000,4000});
-		testList.add(new int[]{4000,5000});
+		testList.add(new int[]{4000,5000});*/
 		
 		writeFile(testList);
-	}*/
+	}
 	
 	/** Writes the edges to the file */
 	/** Draws an edge, lifts the pen, moves to a new edge, lowers the pen, repeat */
