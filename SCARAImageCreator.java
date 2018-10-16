@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class SCARAImageCreator
 {
