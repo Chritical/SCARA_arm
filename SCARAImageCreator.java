@@ -40,7 +40,19 @@ public class SCARAImageCreator
 		edges = edgeProcessor.processEdges();
 		
 		System.out.println("Converting to coordinates...");
-		CoordinateProcessor coordinateProcessor = new CoordinateProcessor();
+	   	double motorLeftX = 300;
+	   	double motorLeftY = 480;
+	   	double motorRightX = 340;
+	   	double motorRightY = 480;
+	   	double radius = 290;
+	   	double[] leftThetaValues = {136, 128.5, 109.2};
+	   	double[] rightThetaValues = {80.5, 72, 48.5};
+	   	double[] leftTValues = {1300, 1400, 1600};
+		double[] rightTValues = {1300, 1400, 1600};
+		
+		CoordinateProcessor coordinateProcessor = new CoordinateProcessor(edges, motorLeftX, motorLeftY, motorRightX, motorRightY, 
+										  radius, leftThetaValues, rightThetaValues, 
+										  leftTValues, rightTValues);
 		ArrayList<ArrayList<int[]>> coordinates = coordinateProcessor.getOutput();
 		
 		System.out.println("Saving to file...");
