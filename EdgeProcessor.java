@@ -15,6 +15,7 @@ class EdgeProcessor{
 	int[][] brd;
 	int[][] imgV;
 	int[][] imgH;
+	int[][] img
 	
 	public EdgeProcessor(int input[][]){
 		//Test case
@@ -24,11 +25,10 @@ class EdgeProcessor{
 					{250,250,250,250,50,50,50,50,50},
 					{50,50,50,50,50,50,50,50,50},
 					{50,50,50,50,50,50,50,50,50}};*/
-        processEdges(input);
+        img = input;
     }
     
-	public int[][] processEdges(int img[][]){
-		
+	public int[][] processEdges(){
 		
 		brd = new int[img.length+2][img[0].length+2];
 		int hPro[][] = {{-1,0,1},{-2,0,2},{-1,0,1}};
