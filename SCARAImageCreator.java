@@ -28,14 +28,24 @@ public class SCARAImageCreator
 		System.out.println("");
 		System.out.println("Reading in file...");
 		ImageLoader imageLoader = new ImageLoader();
+		int[][] image = imageLoader.loadImage();
+		
 		System.out.println("Processing file...");
-		ShapeProcessor shapeProcessor = new ShapeProcessor();
+		ShapeProcessor shapeProcessor = new ShapeProcessor(image);
+		ArrayList<ArrayList<int[]>> edges = shapeProcessor.getEdges();
+		
 		System.out.println("Finding edges...");
-		EdgeProcessor edgeProcessor = new EdgeProcessor();
+		EdgeProcessor edgeProcessor = new EdgeProcessor(edges);
+		edges = edgeProcessor.processEdges();
+		
 		System.out.println("Converting to coordinates...");
 		CoordinateProcessor coordinateProcessor = new CoordinateProcessor();
+		ArrayList<ArrayList<int[]>> coordinates = coordinateProcessor.getOutput();
+		
 		System.out.println("Saving to file...");
-		FileCreator fileCreator = new FileCreator();
+		FileCreator fileCreator = new FileCreator(coordinates);
+		fileCreator.writeFile();
+		
 		System.out.println("================= ~ Done! ~ =================");
 	}
 	
