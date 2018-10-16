@@ -62,7 +62,8 @@ class EdgeProcessor{
 		}
 		for(int i=0;i<img.length; i++){
 				for(int j=0; j<img[0].length;j++){
-						brd[i+1][j+1]=(int)(Math.sqrt(imgH[i][j]*imgH[i][j] + imgV[i][j]*imgV[i][j]));
+						brd[i+1][j+1]=(int)(Math.sqrt(imgH[i][j]*imgH[i][j] +
+									      imgV[i][j]*imgV[i][j]) * 255 / Math.sqrt((1020^2)*2));
 						
 				}
 		}
