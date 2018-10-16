@@ -23,25 +23,19 @@ import java.awt.image.BufferedImage;
 public class SCARAImageCreator
 {
 	SCARAImageCreator(){
-		//currently all classes and methods are preliminary, may need to be changed to fit actual files
-		ImageLoader imageLoader = new ImageLoader();
-		ShapeProcessor shapeProcessor = new ShapeProcessor();
-		EdgeProcessor edgeProcessor = new EdgeProcessor();
-		CoordinateProcessor coordinateProcessor = new CoordinateProcessor();
-		FileCreator fileCreator = new FileCreator();
-		
+		//Make sure the image is 480p
 		System.out.println("Welcome to team baconCow();'s image creator for the SCARA robot arm");
 		System.out.println("");
 		System.out.println("Reading in file...");
-		imageLoader.loadImage();
+		ImageLoader imageLoader = new ImageLoader();
 		System.out.println("Processing file...");
-		shapeProcessor.processShape();
+		ShapeProcessor shapeProcessor = new ShapeProcessor();
 		System.out.println("Finding edges...");
-		edgeProcessor.findEdges();
+		EdgeProcessor edgeProcessor = new EdgeProcessor();
 		System.out.println("Converting to coordinates...");
-		coordinateProcessor.processCoordinates();
+		CoordinateProcessor coordinateProcessor = new CoordinateProcessor();
 		System.out.println("Saving to file...");
-		fileCreator.writeFile();
+		FileCreator fileCreator = new FileCreator();
 		System.out.println("================= ~ Done! ~ =================");
 	}
 	
