@@ -1,4 +1,4 @@
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * Processes a file of a picture of the edges into an ArrayList of
@@ -44,7 +44,7 @@ class ShapeProcessor {
     /**
      * Produces the edges by adding them to the edges ArrayList.
      */
-    private void produceEdges() {
+    private void processEdges() {
         for (int row = 0; row < image.length; row++) {
             for (int col = 0; col < image[0].length; col++) {
                 if (image[row][col] > startThreshold) {

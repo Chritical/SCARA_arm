@@ -31,13 +31,13 @@ public class SCARAImageCreator
 		ImageLoader imageLoader = new ImageLoader();
 		int[][] image = imageLoader.loadImage();
 		
-		System.out.println("Processing file...");
-		ShapeProcessor shapeProcessor = new ShapeProcessor(image);
-		ArrayList<ArrayList<int[]>> edges = shapeProcessor.getEdges();
-		
 		System.out.println("Finding edges...");
-		EdgeProcessor edgeProcessor = new EdgeProcessor(edges);
-		edges = edgeProcessor.processEdges();
+		EdgeProcessor edgeProcessor = new EdgeProcessor(image);
+		image = edgeProcessor.processEdges();
+		
+		System.out.println("Processing file...");
+		ShapeProcessor shapeProcessor = new ShapeProcessor(image, 200, 150);
+		ArrayList<ArrayList<int[]>> edges = shapeProcessor.getEdges();
 		
 		System.out.println("Converting to coordinates...");
 	   	double motorLeftX = 300;
@@ -62,7 +62,7 @@ public class SCARAImageCreator
 		System.out.println("================= ~ Done! ~ =================");
 	}
 	
-	public static void main (String[] args)}{
+	public static void main (String[] args) {
 		SCARAImageCreator imageCreator = new SCARAImageCreator();
 	}
 	
