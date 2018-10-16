@@ -24,9 +24,9 @@ public class ImageLoader{
     
     private Color[] greyColors = new Color[256];
     
-    ImageLoader(){
+    /*ImageLoader(){
 		loadImage();
-    }
+    }*/
     
     public int[][] loadImage(){
 		this.computeGreyColours();
