@@ -1,9 +1,9 @@
 /** INPUT: ArrayList<ArrayList<int[]>> coordinates, int[0] L motor, int[1] R motor
 /** OUTPUT: File of motor controls with format 'XXXX,XXXX,XXXX', one per line */
 
-import ecs100.*;
+/*import ecs100.*;
 import java.util.*;
-import java.io.*;
+import java.io.*;*/
 
 public class FileCreator
 {	
