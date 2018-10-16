@@ -1,4 +1,6 @@
-/** Takes an image and converts it to code that can be submitted to the SCARA
+/** 
+ * This is the class that ties it all together. 
+ * Takes an image and converts it to code that can be submitted to the SCARA
  * robot arm for drawing
  * 
  * ENGR110, 2018, T2
