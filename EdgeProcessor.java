@@ -2,20 +2,20 @@
  * Takes an int[][] ppm image and outputs an int[][] with edges in white and everything else in black.
  **/
 
-/*import ecs100.*;
+import ecs100.*;
 import java.util.*;
 import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.lang.Math;*/
+import java.lang.Math;
 
 class EdgeProcessor{
 
 	int[][] brd;
 	int[][] imgV;
 	int[][] imgH;
-	int[][] img
+	int[][] img;
 	
 	public EdgeProcessor(int input[][]){
 		//Test case

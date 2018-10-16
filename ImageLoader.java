@@ -6,12 +6,12 @@
  * 0.0.0.1
  */
 
-/*import ecs100.*;
+import ecs100.*;
 import java.util.*;
 import java.awt.Color;
 import java.io.*;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;*/
+import java.awt.image.BufferedImage;
 
 public class ImageLoader{
 	
@@ -37,7 +37,7 @@ public class ImageLoader{
 	//this method will just return the image(getter method)
     public int[][] getImage(){
 		return this.image;    
-       }
+    }
     
     private void computeGreyColours(){
         for (int i=0; i<256; i++){
@@ -48,7 +48,8 @@ public class ImageLoader{
 	
 	//This is the method that chooses the file.
     public void loadImageFromFile(){
-        this.image = UIFileChooser.open();
+		
+        this.image = loadAnImage(UIFileChooser.open());
         //this.redisplayImage();
     }
 
