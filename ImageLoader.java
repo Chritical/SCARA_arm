@@ -1,6 +1,6 @@
 
 /**
- * Will create a ppm from an rgb image(optimised for jpeg)
+ * Will create a ppm from an rgb image (optimised for jpeg)
  *
  * Felix (KrypticKain) Kain
  * 0.0.0.1
@@ -13,7 +13,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
-public class imageLoader{
+public class ImageLoader{
 	
     private final int pixelSize = 1;
     
@@ -24,7 +24,7 @@ public class imageLoader{
     
     private Color[] greyColors = new Color[256];
     
-    imageLoader(){
+    ImageLoader(){
 		loadImage();
     }
     
