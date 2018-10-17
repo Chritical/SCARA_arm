@@ -31,9 +31,11 @@ public class FileCreator
 			
 			for (ArrayList<int[]> edge : edges) {
 				for (int[] line : edge){
-					out.println(line[0]+","+line[1]+",1200"); //pen up
+					//out.println(line[0]+","+line[1]+",1200"); //pen up
 					out.println(line[0]+","+line[1]+",1800"); //pen down
 				}
+				// this change makes the pen only lift up after the edge is done
+				out.println("1500,1500,1200"); //default position, pen up
 			}
 		}
 		catch (IOException e){ Trace.println("FAIL: "+e); }
