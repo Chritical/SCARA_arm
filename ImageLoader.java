@@ -96,6 +96,17 @@ public class ImageLoader{
         return ans;
     }
     
+    
+    //public void printImage() {
+      //  for (int i = 0; i < image.length; i++) {
+        //    for (int j = 0; j < image[0].length; j++) {
+          //      if (image[i][j] < 255) System.out.println("it's there");
+                //System.out.print(image[i][j]);
+           // }
+            //System.out.println();
+        //}
+    //}
+    
     /*public static void main(String[] arguments){
         imageLoader ob = new imageLoader();
     }  */

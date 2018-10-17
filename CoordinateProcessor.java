@@ -38,6 +38,11 @@
 		this.motorRightY = motorRightY;
 		this.radius = radius;
 		
+		for (int i = 0; i < leftThetaValues.length; i++) {
+			leftThetaValues[i] = leftThetaValues[i] * Math.PI/180;
+			rightThetaValues[i] = rightThetaValues[i] * Math.PI/180;
+		}
+		
 		calculateMotorEquation(leftThetaValues, leftTValues, "left");
 		calculateMotorEquation(rightThetaValues, rightTValues, "right");
 		
@@ -161,10 +166,10 @@
 			sumOfXSquared += Math.pow(theta[i], 2);
 		}
 		
-		System.out.println("sumOfXY: " + sumOfXY);
-		System.out.println("sumOfX: " + sumOfX);
-		System.out.println("sumOfY: " + sumOfY);
-		System.out.println("sumOfXSquared: " + sumOfXSquared);
+		//System.out.println("sumOfXY: " + sumOfXY);
+		//System.out.println("sumOfX: " + sumOfX);
+		//System.out.println("sumOfY: " + sumOfY);
+		//System.out.println("sumOfXSquared: " + sumOfXSquared);
 		
 		motorGradient[chosenMotor] = (numberOfDataPoints*sumOfXY - sumOfX*sumOfY) / 
 		                             (numberOfDataPoints*sumOfXSquared - Math.pow(sumOfX, 2));
@@ -172,7 +177,7 @@
 		motorConstant[chosenMotor] = (sumOfY*sumOfXSquared - sumOfX*sumOfXY) / 
 		                             (numberOfDataPoints*sumOfXSquared - Math.pow(sumOfX, 2));
                           
-		System.out.println(motor + " motor gradient: " + motorGradient[chosenMotor] + "\t" + motor + " motor constant: " + motorConstant[chosenMotor]);
+		//System.out.println(motor + " motor gradient: " + motorGradient[chosenMotor] + "\t" + motor + " motor constant: " + motorConstant[chosenMotor]);
 		
 	}
     
@@ -183,15 +188,25 @@
      * @return The set of motor controls.
      */
     private int[] convertCoordinateToMotorControls(int[] coordinate) {
+		
+		int[] newCoord = new int[2];
+		
+		newCoord[0] = coordinate[0];
+		newCoord[1] = coordinate[1];
+		
+		//~ System.out.println("c: " + newCoord[0] + " " + newCoord[1]);
+		
 		double leftTheta, rightTheta;
 		
-		leftTheta = calculateTheta(coordinate[0], coordinate[1], "left");
-		rightTheta = calculateTheta(coordinate[0], coordinate[1], "right");
+		leftTheta = calculateTheta(newCoord[0], newCoord[1], "left");
+		rightTheta = calculateTheta(newCoord[0], newCoord[1], "right");
 		
-		coordinate[0] = calculateMotorControl(leftTheta, "left");
-		coordinate[1] = calculateMotorControl(rightTheta, "right");
+		newCoord[0] = calculateMotorControl(leftTheta, "left");
+		newCoord[1] = calculateMotorControl(rightTheta, "right");
 		
-		return coordinate;
+		System.out.println(newCoord[0] + " " + newCoord[1]);
+		
+		return newCoord;
 	}
 	
 	
@@ -199,12 +214,41 @@
 	 * Processes every coordinate in every edge and overwrites them
 	 * with the new motor control values.
 	 */
-	private void processCoordinates() {		
-		for (ArrayList<int[]> edge : edges) {
-			for (int[] coordinate : edge) {		
-				convertCoordinateToMotorControls(coordinate);	
+	private void processCoordinates() {	
+		
+		//~ ArrayList<ArrayList<int[]>> edgesCopy = new ArrayList<ArrayList<int[]>>();
+		//~ edges
+		
+		//~ for (ArrayList<int[]> edge : edges) {
+			
+			
+			
+			//~ for (int[] coordinate : edge) {		
+				
+				
+				
+				//~ convertCoordinateToMotorControls(coordinate);
+			//~ }
+		//~ }
+		
+		ArrayList<ArrayList<int[]>> edgesCopy = new ArrayList<ArrayList<int[]>>();
+		//~ edges
+		
+		//~ System.out.println(edges.size() + " " + edges.get(0).size());
+		
+		for (int i = 0; i < edges.size(); i++) {
+			
+			edgesCopy.add(new ArrayList<int[]>());
+			
+			for (int j = 0; j < edges.get(i).size(); j++) {
+				
+				edgesCopy.get(i).add(convertCoordinateToMotorControls(edges.get(i).get(j)));
+				
 			}
+			
 		}
+		
+		edges = edgesCopy;
 	}
 	
 	
@@ -254,20 +298,40 @@
 						   calculateMotorControl(rightTheta, "right"));
 				
 	}
+	
+	public void testCoordinateToMotorControl(int[] coordinate) {
+
+		int[] c = convertCoordinateToMotorControls(coordinate);
+		
+		System.out.println(c[0] + " " + c[1]);
+		
+		
+	}
     
-    ////public static void main(String[] args) {
-		////// some simple test cases which are correct according to
-		//// Arthur's python program.
-    //    CoordinateProcessor cp = new CoordinateProcessor(null, 300, 480, 340, 480, 290);
-    //    cp.testTheta(255, 98);
-    //    cp.testTheta(230, 12);
-    //    
-    //    double[] leftTheta  = {136, 128.5, 109.2};
-    //    double[] rightTheta = {80.5, 72, 48.5};
-    //    double[] leftT      = {1300, 1400, 1600};
-    //    double[] rightT     = {1300, 1400, 1600};
-    //   
-    //    cp.testMotorControls(118, 62, leftTheta, rightTheta, leftT, rightT);
-    //}
+    //~ public static void main(String[] args) {
+		//~ // some simple test cases which are correct according to
+	    //~ // Arthur's python program.
+        
+        //~ double[] leftTheta  = {136, 128.5, 109.2};
+        //~ double[] rightTheta = {80.5, 72, 48.5};
+        //~ double[] leftT      = {1300, 1400, 1600};
+        //~ double[] rightT     = {1300, 1400, 1600};
+        
+        //~ ArrayList<ArrayList<int[]>> edges = new ArrayList<ArrayList<int[]>>();
+        //~ ArrayList<int[]> coordinate = new ArrayList<int[]>();
+        //~ coordinate.add(new int[] {270, 288});
+        
+        //~ edges.add(coordinate);
+        
+        //~ CoordinateProcessor cp = new CoordinateProcessor(edges, 300, 480, 340, 480, 290, leftTheta, rightTheta, leftT, rightT);
+       
+		//~ cp.processCoordinates();
+        //~ cp.testMotorControls(118, 62, leftTheta, rightTheta, leftT, rightT);
+        
+        //~ cp.testTheta(255, 98);
+        //~ cp.testTheta(230, 12);
+        
+        //~ cp.testCoordinateToMotorControl(new int[] {270, 288});
+    //~ }
     
  }
