@@ -68,7 +68,7 @@ class ShapeProcessor {
         int newCol = col;
 
         while (image[newRow][newCol] > continueThreshold) {
-            edge.add(new int[] {newRow, newCol});
+            edge.add(new int[] {newCol, newRow});
             erasePixel(newRow, newCol);
 
             int[] maximumNeighbour = findMaximumNeighbour(newRow, newCol);
