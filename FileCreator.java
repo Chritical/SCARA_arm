@@ -31,7 +31,6 @@ public class FileCreator
 			
 			for (ArrayList<int[]> edge : edges) {
 				for (int[] line : edge){
-					//out.println(line[0]+","+line[1]+",1200"); //pen up
 					out.println(line[0]+","+line[1]+",1800"); //pen down
 				}
 				
@@ -42,10 +41,6 @@ public class FileCreator
 		}
 		catch (IOException e){ Trace.println("FAIL: "+e); }
 		
-		System.out.println("Success \nFile written to \"SCARA_instructions\"");
+		System.out.println("Success \nFile written to \"SCARA_instructions.txt\"");
 	}
-	
-	/*public static void main(String[] args){
-		FileCreator fileCreator = new FileCreator();
-	}*/
 }

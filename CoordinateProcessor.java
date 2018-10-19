@@ -204,7 +204,7 @@
 		newCoord[0] = calculateMotorControl(leftTheta, "left");
 		newCoord[1] = calculateMotorControl(rightTheta, "right");
 		
-		System.out.println(newCoord[0] + " " + newCoord[1]);
+		//~ System.out.println(newCoord[0] + " " + newCoord[1]);
 		
 		return newCoord;
 	}
@@ -216,23 +216,7 @@
 	 */
 	private void processCoordinates() {	
 		
-		//~ ArrayList<ArrayList<int[]>> edgesCopy = new ArrayList<ArrayList<int[]>>();
-		//~ edges
-		
-		//~ for (ArrayList<int[]> edge : edges) {
-			
-			
-			
-			//~ for (int[] coordinate : edge) {		
-				
-				
-				
-				//~ convertCoordinateToMotorControls(coordinate);
-			//~ }
-		//~ }
-		
 		ArrayList<ArrayList<int[]>> edgesCopy = new ArrayList<ArrayList<int[]>>();
-		//~ edges
 		
 		//~ System.out.println(edges.size() + " " + edges.get(0).size());
 		
@@ -241,11 +225,8 @@
 			edgesCopy.add(new ArrayList<int[]>());
 			
 			for (int j = 0; j < edges.get(i).size(); j++) {
-				
 				edgesCopy.get(i).add(convertCoordinateToMotorControls(edges.get(i).get(j)));
-				
 			}
-			
 		}
 		
 		edges = edgesCopy;
@@ -304,34 +285,6 @@
 		int[] c = convertCoordinateToMotorControls(coordinate);
 		
 		System.out.println(c[0] + " " + c[1]);
-		
-		
 	}
-    
-    //~ public static void main(String[] args) {
-		//~ // some simple test cases which are correct according to
-	    //~ // Arthur's python program.
-        
-        //~ double[] leftTheta  = {136, 128.5, 109.2};
-        //~ double[] rightTheta = {80.5, 72, 48.5};
-        //~ double[] leftT      = {1300, 1400, 1600};
-        //~ double[] rightT     = {1300, 1400, 1600};
-        
-        //~ ArrayList<ArrayList<int[]>> edges = new ArrayList<ArrayList<int[]>>();
-        //~ ArrayList<int[]> coordinate = new ArrayList<int[]>();
-        //~ coordinate.add(new int[] {270, 288});
-        
-        //~ edges.add(coordinate);
-        
-        //~ CoordinateProcessor cp = new CoordinateProcessor(edges, 300, 480, 340, 480, 290, leftTheta, rightTheta, leftT, rightT);
-       
-		//~ cp.processCoordinates();
-        //~ cp.testMotorControls(118, 62, leftTheta, rightTheta, leftT, rightT);
-        
-        //~ cp.testTheta(255, 98);
-        //~ cp.testTheta(230, 12);
-        
-        //~ cp.testCoordinateToMotorControl(new int[] {270, 288});
-    //~ }
     
  }

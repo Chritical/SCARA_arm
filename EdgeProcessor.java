@@ -77,8 +77,4 @@ class EdgeProcessor{
 		return brd;
 		
 	}
-	
-	/*public static void main(String[] args){
-			EdgeProcessor im = new EdgeProcessor();
-	}*/
 }

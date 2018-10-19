@@ -48,7 +48,12 @@ class ShapeProcessor {
         for (int row = 0; row < image.length; row++) {
             for (int col = 0; col < image[0].length; col++) {
                 if (image[row][col] > startThreshold) {
-                    edges.add(followEdge(row, col));
+					
+					ArrayList<int[]> edge = followEdge(row, col);
+					
+					if (edge.size() > 3) {
+						edges.add(edge);
+					}
                 }
             }
         }
@@ -75,6 +80,7 @@ class ShapeProcessor {
             newRow = maximumNeighbour[0];
             newCol = maximumNeighbour[1];
         }
+        
         return edge;
     }
 
