@@ -24,10 +24,6 @@ public class ImageLoader{
     
     private Color[] greyColors = new Color[256];
     
-    /*ImageLoader(){
-		loadImage();
-    }*/
-    
     public int[][] loadImage(){
 		this.computeGreyColours();
 		this.loadImageFromFile();
@@ -95,21 +91,6 @@ public class ImageLoader{
         } catch(IOException e){UI.println("Image reading failed: "+e);}
         return ans;
     }
-    
-    
-    //public void printImage() {
-      //  for (int i = 0; i < image.length; i++) {
-        //    for (int j = 0; j < image[0].length; j++) {
-          //      if (image[i][j] < 255) System.out.println("it's there");
-                //System.out.print(image[i][j]);
-           // }
-            //System.out.println();
-        //}
-    //}
-    
-    /*public static void main(String[] arguments){
-        imageLoader ob = new imageLoader();
-    }  */
 
 }
 

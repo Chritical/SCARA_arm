@@ -37,15 +37,8 @@ public class SCARAImageCreator
 		image = edgeProcessor.processEdges();
 		
 		System.out.println("Processing file...");
-		ShapeProcessor shapeProcessor = new ShapeProcessor(image, 150, 100);
+		ShapeProcessor shapeProcessor = new ShapeProcessor(image, 20, 5);
 		ArrayList<ArrayList<int[]>> edges = shapeProcessor.getEdges();
-		
-		for (ArrayList<int[]> edge : edges) {
-			for (int[] coordinate : edge) {
-				System.out.print("[" + coordinate[0] + ", " + coordinate[1] + "], ");
-			}
-			System.out.println();
-		}
 		
 		System.out.println("Converting to coordinates...");
 	   	double motorLeftX = 300;
@@ -53,28 +46,18 @@ public class SCARAImageCreator
 	   	double motorRightX = 340;
 	   	double motorRightY = 480;
 	   	double radius = 290;
-	   	double[] leftThetaValues = {140.5, 128, 115, 108.5};
-	   	double[] rightThetaValues = {72, 64, 55, 40};
-	   	double[] leftTValues = {1400, 1500, 1600, 1700};
-		double[] rightTValues = {1400, 1500, 1600, 1700};
-		
-		//~ double[] leftTheta  = {136, 128.5, 109.2};
-        //~ double[] rightTheta = {80.5, 72, 48.5};
-        //~ double[] leftT      = {1300, 1400, 1600};
-        //~ double[] rightT     = {1300, 1400, 1600};
+	   	
+	   	// all of these are test coordinates for calibration
+	   	double[] leftThetaValues = {160, 143, 130, 123};
+	   	double[] rightThetaValues = {76.7, 62.4, 53.5, 45};
+	   	double[] leftTValues = {1300, 1400, 1500, 1600};
+		double[] rightTValues = {1300, 1400, 1500, 1600};
 		
 		CoordinateProcessor coordinateProcessor = new CoordinateProcessor(edges, motorLeftX, motorLeftY, motorRightX, motorRightY, 
 										  radius, leftThetaValues, rightThetaValues, 
 										  leftTValues, rightTValues);
 		ArrayList<ArrayList<int[]>> coordinates = coordinateProcessor.getOutput();
-		
-		//for (ArrayList<int[]> edge : coordinates) {
-		//	for (int[] coord : edge) {
-		//		System.out.print("[" + coord[0] + ", " + coord[1] + "], ");
-		//	}
-		//	System.out.println();
-		//}
-		
+
 		System.out.println("Saving to file...");
 		FileCreator fileCreator = new FileCreator(coordinates);
 		fileCreator.writeFile();
